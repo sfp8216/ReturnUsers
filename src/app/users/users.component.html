@@ -1,1 +1,52 @@
-<p *ngFor="let value of values">{{value.FirstName}}</p>
+
+<form class="d-flex flex-grow-1 mb-1">
+  <input class="form-control ml-2" type="text" />
+</form>
+<table class="table table-hover table-bordered table-responsive-x1">
+<thead>
+  <th>Name</th>
+  <th>Subscriber ID</th>
+  <th>Group ID</th>
+  <th>View Details</th>
+</thead>
+<tbody>
+  <ng-container *ngFor="let user of users">
+    <tr (click)="user.expanded = !user.expanded">
+      <td> {{user.firstName}} {{user.lastName}} </td>
+      <td> {{user.subscriberID}} </td>
+      <td> {{user.groupID}} </td>
+      <td>{{user.expanded ? '&ndash;' : '+'}} {{user.name}}</td>
+    </tr>
+    <ng-container *ngIf="user.expanded">
+      <div>
+        <table class="col-span-4">
+          <thead>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>ZipCode</th>
+            <th>Phone</th>
+            <th>Cell</th>
+            <th>Email</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{user.gender}}</td>
+              <td>{{user.dob}}</td>
+              <td>{{user.addressLine1}} {{user.addressLine2}}</td>
+              <td>{{user.city}}</td>
+              <td>{{user.state}}</td>
+              <td>{{user.postalCode}}</td>
+              <td>{{user.homePhone}}</td>
+              <td>{{user.cellPhone}}</td>
+              <td>{{user.email}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+  </ng-container>
+</tbody>
+</table>
