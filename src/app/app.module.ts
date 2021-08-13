@@ -8,6 +8,7 @@ import { UsersComponent } from './users/users.component';
 import { HeaderComponent } from './component/shared/header/header.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule],
+    NgbModule,
+    DataTablesModule],
   bootstrap: [
     AppComponent,
      UsersComponent,
