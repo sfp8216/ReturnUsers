@@ -8,7 +8,6 @@ import { UsersComponent } from './users/users.component';
 import { HeaderComponent } from './component/shared/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DataTablesModule } from 'angular-datatables';
 import { UsersDetailsComponent } from './users-details/users-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,7 +30,6 @@ import { MatSortModule } from '@angular/material/sort';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    DataTablesModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatTableModule,
