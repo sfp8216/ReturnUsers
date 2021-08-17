@@ -1,28 +1,21 @@
 import {
-  Component,
-  OnDestroy,
-  OnInit,
-  PipeTransform,
-  ViewChild,
-} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './User';
-import { MatTableDataSource } from '@angular/material/table';
-import {
   animate,
   state,
   style,
   transition,
   trigger,
 } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AfterViewInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { User } from 'src/app/users/User';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  selector: 'app-manage',
+  templateUrl: './manage.component.html',
+  styleUrls: ['./manage.component.css'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
@@ -34,7 +27,7 @@ import { AfterViewInit } from '@angular/core';
     ]),
   ],
 })
-export class UsersComponent implements OnInit, AfterViewInit {
+export class ManageComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource<User>();
