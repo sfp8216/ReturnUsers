@@ -1,83 +1,96 @@
-import { Component, OnDestroy, OnInit, PipeTransform } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  PipeTransform,
+  ViewChild,
+} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { User } from './User';
-import { Subject } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
-export class UsersComponent implements OnInit, OnDestroy {
-  dtOptions: DataTables.Settings = {};
-  users: User[] = [];
-  dtTrigger: Subject<any> = new Subject<any>();
-
-  constructor(private http:HttpClient) { }
+export class UsersComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  dataSource = new MatTableDataSource<User>();
+  columnsToDisplay: string[] = ['name', 'subscriberid', 'groupid'];
+  expandedElement: User | null;
+  searchTerm: string;
+  resetVisible = false;
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.dtOptions = {
-      pagingType:'full_numbers',
-      pageLength:15,
-      lengthMenu:[20,40,50]
-    };
     this.loadUsers();
-
-    //load stuff?
-    $('#usersTable tbody').on('click','td.details-control', function(){
-      var tr = $(this).closest('tr');
-      var row = $('#usersTable').DataTable().row(tr);
-
-      if(row.child.isShown()){
-        row.child.hide();
-        tr.removeClass('shown');
-      }else{
-
-
-
-
-        console.log("false");
-        row.child(
-          '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
-            '<td>Full name:</td>'+
-            "<td>{{user.firstName}}</td>"+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extension number:</td>'+
-            "<td>{{user.firstName}}</td>"+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-        '</tr>'+
-    '</table>'
-        ).show();
-          tr.addClass('shown');
-      }
-    })
   }
 
-  showDetails(){
-  return "hi";
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
-  loadUsers(){
-     this.http.get("https://returnusers.azurewebsites.net/api/ReturnUsers").subscribe(response => {
-      console.log(response);
-      this.users = (response as any);
-      this.dtTrigger.next();
-    },
-    err => {
-      console.log(err);
-    })
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
-  format ( user:User )  : string{
-    return
-}
-  ngOnDestroy(): void {
-    // Do not forget to unsubscribe the event
-    this.dtTrigger.unsubscribe();
+  loadUsers() {
+    this.http
+      .get('https://returnusers.azurewebsites.net/api/ReturnUsers')
+      .subscribe(
+        (data: User[]) => {
+          console.log(data);
+          this.dataSource.data = data;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+
+  search() {
+    console.log(this.searchTerm);
+    const filterValue = this.searchTerm;
+    this.http
+      .get(
+        'https://returnusers.azurewebsites.net/api/SearchUsers?SearchTerm=' +
+          filterValue
+      )
+      .subscribe(
+        (data: User[]) => {
+          console.log(data);
+          this.dataSource.data = data;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
