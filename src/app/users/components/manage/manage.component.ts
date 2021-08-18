@@ -13,6 +13,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/users/User';
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
+import { UpdateDialogComponent } from '../shared/update-dialog/update-dialog.component';
 
 @Component({
   selector: 'app-manage',
@@ -64,14 +65,21 @@ export class ManageComponent implements OnInit, AfterViewInit {
   }
 
   deleteUser(id: string) {
-    console.log(id);
     let dialogRef = this.dialog.open(DeleteDialogComponent, {
       height: '200px',
       width: '400px',
       data: { id: id },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('reloadin!');
+      this.loadUsers();
+    });
+  }
+  updateUser(element: any) {
+    let dialogRef = this.dialog.open(UpdateDialogComponent, {
+      data: { element },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
       this.loadUsers();
     });
   }
@@ -81,7 +89,7 @@ export class ManageComponent implements OnInit, AfterViewInit {
       .get('https://returnusers.azurewebsites.net/api/ReturnUsers')
       .subscribe(
         (data: User[]) => {
-          console.log(data);
+          data;
           this.dataSource.data = data;
         },
         (err) => {
@@ -91,7 +99,6 @@ export class ManageComponent implements OnInit, AfterViewInit {
   }
 
   search() {
-    console.log(this.searchTerm);
     const filterValue = this.searchTerm;
     this.http
       .get(
@@ -100,7 +107,6 @@ export class ManageComponent implements OnInit, AfterViewInit {
       )
       .subscribe(
         (data: User[]) => {
-          console.log(data);
           this.dataSource.data = data;
         },
         (err) => {

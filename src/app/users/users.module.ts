@@ -20,6 +20,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './components/shared/delete-dialog/delete-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UpdateDialogComponent } from './components/shared/update-dialog/update-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ManageComponent,
     HomeComponent,
     DeleteDialogComponent,
+    UpdateDialogComponent,
   ],
   imports: [
     CommonModule,

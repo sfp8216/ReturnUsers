@@ -59,7 +59,6 @@ export class DisplayComponent implements OnInit, AfterViewInit {
       .get('https://returnusers.azurewebsites.net/api/ReturnUsers')
       .subscribe(
         (data: User[]) => {
-          console.log(data);
           this.dataSource.data = data;
         },
         (err) => {
@@ -69,7 +68,6 @@ export class DisplayComponent implements OnInit, AfterViewInit {
   }
 
   search() {
-    console.log(this.searchTerm);
     const filterValue = this.searchTerm;
     this.http
       .get(
@@ -78,7 +76,6 @@ export class DisplayComponent implements OnInit, AfterViewInit {
       )
       .subscribe(
         (data: User[]) => {
-          console.log(data);
           this.dataSource.data = data;
         },
         (err) => {
