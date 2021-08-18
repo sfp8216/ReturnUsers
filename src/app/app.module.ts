@@ -6,15 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UsersDetailsComponent } from './users-details/users-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
 import { RouterModule } from '@angular/router';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [AppComponent, UsersDetailsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -25,6 +25,7 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     UsersModule,
     RouterModule,
+    AuthModule,
   ],
   bootstrap: [AppComponent],
 })

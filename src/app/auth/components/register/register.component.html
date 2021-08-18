@@ -1,0 +1,26 @@
+<div class="cotainer mx-auto" align="center" style="padding: 32px">
+  <form class="example-form" [formGroup]="this.registerFormGroup">
+    <p>Register for a new account</p>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Enter Username</mat-label>
+      <input matInput placeholder="Username" formControlName="username" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Enter Password</mat-label>
+      <input matInput placeholder="Password" formControlName="password" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Enter Password Again</mat-label>
+      <input matInput placeholder="Password" formControlName="passwordAgain" />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="register()"
+      [disabled]="!registerFormGroup.valid"
+    >
+      Register
+    </button>
+  </form>
+</div>
