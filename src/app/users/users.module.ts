@@ -11,9 +11,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
-  declarations: [CreateComponent, DisplayComponent, ManageComponent],
+  declarations: [
+    CreateComponent,
+    DisplayComponent,
+    ManageComponent,
+    HomeComponent,
+  ],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -24,6 +33,9 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatSortModule,
     FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
   ],
   exports: [CreateComponent, DisplayComponent, ManageComponent],
 })

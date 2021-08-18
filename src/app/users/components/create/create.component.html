@@ -1,1 +1,147 @@
-<p>create works!</p>
+<p>Create a new User</p>
+<div class="container">
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="Ex. Sam" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="standard">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Ex. Sunday" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="standard">
+      <mat-label>Middle Initial</mat-label>
+      <input matInput placeholder="Ex. Q" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="fill">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Subscriber ID</mat-label>
+      <input matInput placeholder="Ex. 23411523" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="standard">
+      <mat-label>Group ID</mat-label>
+      <input matInput placeholder="Ex. 12" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="standard">
+      <mat-label>Address Line One</mat-label>
+      <input matInput placeholder="Ex. 12 Willywonka drive" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="standard">
+      <mat-label>Address Line Two</mat-label>
+      <input matInput placeholder="Ex. Westchester Ave" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>City</mat-label>
+      <input matInput placeholder="Ex. Dormester" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="fill">
+      <mat-label>State</mat-label>
+      <mat-select>
+        <mat-option value="AL">AL</mat-option>
+        <mat-option value="AK">AK</mat-option>
+        <mat-option value="AZ">AZ</mat-option>
+        <mat-option value="AR">AR</mat-option>
+        <mat-option value="CA">CA</mat-option>
+        <mat-option value="CO">CO</mat-option>
+        <mat-option value="CT">CT</mat-option>
+        <mat-option value="DE">DE</mat-option>
+        <mat-option value="DC">DC</mat-option>
+        <mat-option value="FL">FL</mat-option>
+        <mat-option value="GA">GA</mat-option>
+        <mat-option value="GU">GU</mat-option>
+        <mat-option value="HI">HI</mat-option>
+        <mat-option value="ID">ID</mat-option>
+        <mat-option value="IL">IL</mat-option>
+        <mat-option value="IN">IN</mat-option>
+        <mat-option value="IA">IA</mat-option>
+        <mat-option value="KS">KS</mat-option>
+        <mat-option value="KY">KY</mat-option>
+        <mat-option value="LA">LA</mat-option>
+        <mat-option value="ME">ME</mat-option>
+        <mat-option value="MD">MD</mat-option>
+        <mat-option value="MA">MA</mat-option>
+        <mat-option value="MI">MI</mat-option>
+        <mat-option value="MN">MN</mat-option>
+        <mat-option value="MS">MS</mat-option>
+        <mat-option value="MO">MO</mat-option>
+        <mat-option value="MT">MT</mat-option>
+        <mat-option value="NE">NE</mat-option>
+        <mat-option value="NV">NV</mat-option>
+        <mat-option value="NH">NH</mat-option>
+        <mat-option value="NJ">NJ</mat-option>
+        <mat-option value="NM">NM</mat-option>
+        <mat-option value="NY">NY</mat-option>
+        <mat-option value="NC">NC</mat-option>
+        <mat-option value="ND">ND</mat-option>
+        <mat-option value="OH">OH</mat-option>
+        <mat-option value="OK">OK</mat-option>
+        <mat-option value="OR">OR</mat-option>
+        <mat-option value="PA">PA</mat-option>
+        <mat-option value="PR">PR</mat-option>
+        <mat-option value="RI">RI</mat-option>
+        <mat-option value="SC">SC</mat-option>
+        <mat-option value="SD">SD</mat-option>
+        <mat-option value="TN">TN</mat-option>
+        <mat-option value="TX">TX</mat-option>
+        <mat-option value="UT">UT</mat-option>
+        <mat-option value="VT">VT</mat-option>
+        <mat-option value="VA">VA</mat-option>
+        <mat-option value="VI">VI</mat-option>
+        <mat-option value="WA">WA</mat-option>
+        <mat-option value="WV">WV</mat-option>
+        <mat-option value="WI">WI</mat-option>
+        <mat-option value="WY">WY</mat-option>
+      </mat-select>
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="standard">
+      <mat-label>Postal Code</mat-label>
+      <input matInput placeholder="Ex. 90210" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="standard">
+      <mat-label>Home Phone</mat-label>
+      <input matInput placeholder="Ex. 5552223333" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="standard">
+      <mat-label>Cell Phone</mat-label>
+      <input matInput placeholder="Ex. 5552223333" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="standard">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Ex. example@email.com" />
+      <mat-hint>Required*</mat-hint>
+    </mat-form-field>
+  </p>
+</div>

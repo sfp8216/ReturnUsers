@@ -31,7 +31,12 @@ export class ManageComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource<User>();
-  columnsToDisplay: string[] = ['name', 'subscriberid', 'groupid'];
+  columnsToDisplay: string[] = [
+    'name',
+    'subscriberid',
+    'groupid',
+    'interaction',
+  ];
   expandedElement: User | null;
   searchTerm: string;
   resetVisible = false;

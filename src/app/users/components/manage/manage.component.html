@@ -42,6 +42,13 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Group ID.</th>
       <td mat-cell *matCellDef="let element">{{ element.groupID }}</td>
     </ng-container>
+    <ng-container matColumnDef="interaction">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Manage.</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary">Update</button>&nbsp;
+        <button mat-raised-button color="warn">Delete</button>
+      </td>
+    </ng-container>
 
     <ng-container matColumnDef="expandedDetail">
       <td
@@ -77,14 +84,6 @@
                 <p>Home Phone: {{ element.homePhone }}</p>
                 <p>Cell Phone: {{ element.cellPhone }}</p>
                 <p>Email Address: {{ element.email }}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <button mat-raised-button color="primary">Update</button>&nbsp;
-                <button mat-raised-button color="warn">Delete</button>
-                <br />
-                <br />
               </div>
             </div>
           </div>
