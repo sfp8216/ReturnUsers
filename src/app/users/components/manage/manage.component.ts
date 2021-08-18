@@ -7,10 +7,12 @@ import {
 } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/users/User';
+import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-manage',
@@ -35,12 +37,14 @@ export class ManageComponent implements OnInit, AfterViewInit {
     'name',
     'subscriberid',
     'groupid',
+    'show-details',
     'interaction',
   ];
   expandedElement: User | null;
   searchTerm: string;
   resetVisible = false;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public dialog: MatDialog) {}
+  status = true; // or minus if you want that first
 
   ngOnInit(): void {
     this.loadUsers();
@@ -57,6 +61,19 @@ export class ManageComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  deleteUser(id: string) {
+    console.log(id);
+    let dialogRef = this.dialog.open(DeleteDialogComponent, {
+      height: '200px',
+      width: '400px',
+      data: { id: id },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('reloadin!');
+      this.loadUsers();
+    });
   }
 
   loadUsers() {

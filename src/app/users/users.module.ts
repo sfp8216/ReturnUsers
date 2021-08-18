@@ -12,16 +12,22 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './components/shared/delete-dialog/delete-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     CreateComponent,
     DisplayComponent,
     ManageComponent,
     HomeComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +42,11 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatIconModule,
+    MatSnackBarModule,
   ],
   exports: [CreateComponent, DisplayComponent, ManageComponent],
 })

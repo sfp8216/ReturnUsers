@@ -42,11 +42,26 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Group ID.</th>
       <td mat-cell *matCellDef="let element">{{ element.groupID }}</td>
     </ng-container>
+    <ng-container matColumnDef="show-details">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Show Details</th>
+      <td
+        mat-cell
+        *matCellDef="let element; columns: columnsToDisplay"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element"
+        align="center"
+      >
+        <i class="fas fa-info-circle fa-2x"></i>
+      </td>
+    </ng-container>
     <ng-container matColumnDef="interaction">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Manage.</th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" align="center">
         <button mat-raised-button color="primary">Update</button>&nbsp;
-        <button mat-raised-button color="warn">Delete</button>
+        <button mat-raised-button color="warn" (click)="deleteUser(element.id)">
+          Delete
+        </button>
       </td>
     </ng-container>
 
@@ -96,7 +111,6 @@
       *matRowDef="let element; columns: columnsToDisplay"
       class="example-element-row"
       [class.example-expanded-row]="expandedElement === element"
-      (click)="expandedElement = expandedElement === element ? null : element"
     ></tr>
     <tr
       mat-row
