@@ -8,6 +8,7 @@ import {
   MSAL_GUARD_CONFIG,
 } from '@azure/msal-angular';
 import { AuthenticationResult } from '@azure/msal-browser';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,23 +17,20 @@ import { AuthenticationResult } from '@azure/msal-browser';
 })
 export class LoginComponent implements OnInit {
   public readonly loginFormGroup: FormGroup;
-  claimsObject: any;
   constructor(
     private http: HttpClient,
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
-    private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService
+    private msalService: MsalService,
+    private msalBroadcastService: MsalBroadcastService,
+    public authService: AuthService
   ) {}
 
   login() {
-    this.authService
+    this.msalService
       .loginPopup()
       .subscribe((response: AuthenticationResult) => {
-        this.authService.instance.setActiveAccount(response.account);
-        this.claimsObject =
-          this.authService.instance.getActiveAccount()?.idTokenClaims;
-
-        console.log(this.claimsObject['roles']);
+        this.msalService.instance.setActiveAccount(response.account);
+        this.authService.getRoles();
       });
   }
 
