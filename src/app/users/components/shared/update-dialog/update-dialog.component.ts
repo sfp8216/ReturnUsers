@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UsersService } from 'src/app/shared/services/users.service';
 import { User } from 'src/app/users/User';
 
 @Component({
@@ -16,7 +17,8 @@ export class UpdateDialogComponent implements OnInit {
     public dialog: MatDialog,
     private readonly formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data,
-    private http: HttpClient
+    private http: HttpClient,
+    public userService: UsersService
   ) {
     this.updateFormGroup = this.formBuilder.group({
       firstName: [],
@@ -70,27 +72,22 @@ export class UpdateDialogComponent implements OnInit {
     user.id = this.userId.id;
 
     console.log(user);
-    this.http
-      .put<any>('https://returnusers.azurewebsites.net/api/UpdateUser', user)
-      .subscribe({
-        next: (data) => {
+    this.userService.updateUser(user).subscribe({
+      next: (data) => {
+        alert('User Updated successfully');
+        this.updateFormGroup.reset();
+        this.dialog.closeAll();
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.statusText == 'Internal Server Error' || error.status > 200) {
+          console.log(error);
+          // alert('There was an error creating a new user');
+        } else {
           alert('User Updated successfully');
           this.updateFormGroup.reset();
           this.dialog.closeAll();
-        },
-        error: (error: HttpErrorResponse) => {
-          if (
-            error.statusText == 'Internal Server Error' ||
-            error.status > 200
-          ) {
-            console.log(error);
-            // alert('There was an error creating a new user');
-          } else {
-            alert('User Updated successfully');
-            this.updateFormGroup.reset();
-            this.dialog.closeAll();
-          }
-        },
-      });
+        }
+      },
+    });
   }
 }

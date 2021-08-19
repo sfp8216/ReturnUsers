@@ -4,23 +4,14 @@
     alt="Italian Trulli"
     style="width: 200px; height: 200px"
   />
-  <form class="example-form" [formGroup]="this.loginFormGroup">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Enter Username</mat-label>
-      <input matInput placeholder="Username" formControlName="username" />
-    </mat-form-field>
-
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Enter Password</mat-label>
-      <input matInput placeholder="Password" formControlName="password" />
-    </mat-form-field>
+  <p>
     <button
       mat-raised-button
       color="primary"
       (click)="login()"
       [disabled]="!loginFormGroup.valid"
     >
-      Login
+      Sign in with Microsoft Azure AD
     </button>
-  </form>
+  </p>
 </div>

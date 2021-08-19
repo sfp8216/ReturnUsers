@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsersService } from 'src/app/shared/services/users.service';
 import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
 @Component({
   selector: 'app-create',
@@ -14,7 +15,8 @@ export class CreateComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private readonly formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public userService: UsersService
   ) {
     this.createFormGroup = this.formBuilder.group({
       firstName: [],
@@ -45,30 +47,22 @@ export class CreateComponent implements OnInit {
 
     let serializedForm = JSON.stringify(formObj);
 
-    this.http
-      .post<any>(
-        'https://returnusers.azurewebsites.net/api/CreateUser',
-        serializedForm
-      )
-      .subscribe({
-        next: (data) => {
-          alert('User created successfully');
-          this.snackBar.openFromComponent(SnackBarComponent);
+    this.userService.createUser(serializedForm).subscribe({
+      next: (data) => {
+        alert('User created successfully');
+        this.snackBar.openFromComponent(SnackBarComponent);
+        this.createFormGroup.reset();
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.statusText == 'Internal Server Error' || error.status > 200) {
+          alert('There was an error creating a new user');
+        } else {
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+          });
           this.createFormGroup.reset();
-        },
-        error: (error: HttpErrorResponse) => {
-          if (
-            error.statusText == 'Internal Server Error' ||
-            error.status > 200
-          ) {
-            alert('There was an error creating a new user');
-          } else {
-            this.snackBar.openFromComponent(SnackBarComponent, {
-              duration: 2000,
-            });
-            this.createFormGroup.reset();
-          }
-        },
-      });
+        }
+      },
+    });
   }
 }

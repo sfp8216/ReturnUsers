@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -11,7 +12,8 @@ export class DeleteDialogComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: { id: string }
+    @Inject(MAT_DIALOG_DATA) public data: { id: string },
+    public userService: UsersService
   ) {}
   dialogRef = this.dialog;
 
@@ -23,28 +25,20 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   deleteUser() {
-    this.http
-      .delete(
-        'https://returnusers.azurewebsites.net/api/DeleteUser?id=' +
-          this.data.id
-      )
-      .subscribe({
-        next: (data) => {
-          console.log(data);
+    this.userService.deleteUser(this.data.id).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.dialog.closeAll();
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.statusText == 'Internal Server Error' || error.status > 200) {
+          alert('There was an deleting the user');
+        } else {
+          alert('User created successfully');
           this.dialog.closeAll();
-        },
-        error: (error: HttpErrorResponse) => {
-          if (
-            error.statusText == 'Internal Server Error' ||
-            error.status > 200
-          ) {
-            alert('There was an deleting the user');
-          } else {
-            alert('User created successfully');
-            this.dialog.closeAll();
-          }
-        },
-      });
+        }
+      },
+    });
   }
   ngOnInit(): void {}
 }

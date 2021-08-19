@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UsersService } from 'src/app/shared/services/users.service';
 import { User } from 'src/app/users/User';
 import { DeleteDialogComponent } from '../shared/delete-dialog/delete-dialog.component';
 import { UpdateDialogComponent } from '../shared/update-dialog/update-dialog.component';
@@ -44,7 +45,11 @@ export class ManageComponent implements OnInit, AfterViewInit {
   expandedElement: User | null;
   searchTerm: string;
   resetVisible = false;
-  constructor(private http: HttpClient, public dialog: MatDialog) {}
+  constructor(
+    private http: HttpClient,
+    public dialog: MatDialog,
+    public userService: UsersService
+  ) {}
   status = true; // or minus if you want that first
 
   ngOnInit(): void {
@@ -85,33 +90,26 @@ export class ManageComponent implements OnInit, AfterViewInit {
   }
 
   loadUsers() {
-    this.http
-      .get('https://returnusers.azurewebsites.net/api/ReturnUsers')
-      .subscribe(
-        (data: User[]) => {
-          data;
-          this.dataSource.data = data;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+    this.userService.getAllusers().subscribe(
+      (data: User[]) => {
+        data;
+        this.dataSource.data = data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   search() {
     const filterValue = this.searchTerm;
-    this.http
-      .get(
-        'https://returnusers.azurewebsites.net/api/SearchUsers?SearchTerm=' +
-          filterValue
-      )
-      .subscribe(
-        (data: User[]) => {
-          this.dataSource.data = data;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+    this.userService.searchUser(filterValue).subscribe(
+      (data: User[]) => {
+        this.dataSource.data = data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
