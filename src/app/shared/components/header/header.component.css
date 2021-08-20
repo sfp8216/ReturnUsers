@@ -31,3 +31,6 @@
 .dropdown-toggle {
   outline: 0;
 }
+.example-form-field {
+  width: 100%;
+}

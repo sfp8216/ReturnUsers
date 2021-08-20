@@ -1,0 +1,6 @@
+<div class="container">
+    <h1> Your Profile </h1>
+    <h4>Name: {{this.authService.returnUserInfo().name}}</h4>
+    <h4>Your Tenant: {{this.authService.returnUserInfo().tenantId}}</h4>
+    <h4>Your Roles: {{this.authService.returnUserInfo().idTokenClaims["roles"]}}</h4>
+</div>

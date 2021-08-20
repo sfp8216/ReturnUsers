@@ -1,6 +1,8 @@
-<p>Create a new User</p>
+<div class="container">
+  <h1>Add a new user to the database</h1>
+</div>
 <ng-container [formGroup]="this.createFormGroup">
-  <div class="container">
+  <div class="container-flex">
     <p>
       <mat-form-field appearance="standard">
         <mat-label>First Name</mat-label>
@@ -30,43 +32,25 @@
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Subscriber ID</mat-label>
-        <input
-          matInput
-          placeholder="Ex. 23411523"
-          formControlName="subscriberID"
-          maxLength="8"
-        />
+        <input matInput placeholder="Ex. 23411523" formControlName="subscriberID" maxLength="8" />
         <mat-hint>Required*</mat-hint>
       </mat-form-field>
       &nbsp;
       <mat-form-field appearance="standard">
         <mat-label>Group ID</mat-label>
-        <input
-          matInput
-          placeholder="Ex. 12"
-          formControlName="groupID"
-          maxLength="3"
-        />
+        <input matInput placeholder="Ex. 12" formControlName="groupID" maxLength="3" />
         <mat-hint>Required*</mat-hint>
       </mat-form-field>
       &nbsp;
       <mat-form-field appearance="standard">
         <mat-label>Address Line One</mat-label>
-        <input
-          matInput
-          placeholder="Ex. 12 Willywonka drive"
-          formControlName="addressLine1"
-        />
+        <input matInput placeholder="Ex. 12 Willywonka drive" formControlName="addressLine1" />
         <mat-hint>Required*</mat-hint>
       </mat-form-field>
       &nbsp;
       <mat-form-field appearance="standard">
         <mat-label>Address Line Two</mat-label>
-        <input
-          matInput
-          placeholder="Ex. Westchester Ave"
-          formControlName="addressLine2"
-        />
+        <input matInput placeholder="Ex. Westchester Ave" formControlName="addressLine2" />
         <mat-hint>Required*</mat-hint>
       </mat-form-field>
     </p>
@@ -140,55 +124,30 @@
       &nbsp;
       <mat-form-field appearance="standard">
         <mat-label>Postal Code</mat-label>
-        <input
-          matInput
-          placeholder="Ex. 90210"
-          formControlName="postalCode"
-          maxLength="7"
-        />
+        <input matInput placeholder="Ex. 90210" formControlName="postalCode" maxLength="7" />
         <mat-hint>Required*</mat-hint>
       </mat-form-field>
       &nbsp;
       <mat-form-field appearance="standard">
         <mat-label>Home Phone</mat-label>
-        <input
-          matInput
-          placeholder="Ex. 5552223333"
-          formControlName="homePhone"
-          maxLength="10"
-        />
+        <input matInput placeholder="Ex. 5552223333" formControlName="homePhone" maxLength="10" />
         <mat-hint>Required*</mat-hint>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Cell Phone</mat-label>
-        <input
-          matInput
-          placeholder="Ex. 5552223333"
-          formControlName="cellPhone"
-          maxLength="10"
-        />
+        <input matInput placeholder="Ex. 5552223333" formControlName="cellPhone" maxLength="10" />
         <mat-hint>Required*</mat-hint>
       </mat-form-field>
       &nbsp;
       <mat-form-field appearance="standard">
         <mat-label>Email</mat-label>
-        <input
-          matInput
-          placeholder="Ex. example@email.com"
-          formControlName="email"
-        />
+        <input matInput placeholder="Ex. example@email.com" formControlName="email" />
         <mat-hint>Required*</mat-hint>
       </mat-form-field>
     </p>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="submit()"
-      [disabled]="!createFormGroup.valid"
-    >
-      Submit</button
-    >&nbsp;
+    <button mat-raised-button color="primary" (click)="submit()" [disabled]="!createFormGroup.valid">
+      Submit</button>&nbsp;
   </div>
 </ng-container>

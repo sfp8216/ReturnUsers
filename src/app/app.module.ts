@@ -12,6 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatInputModule } from '@angular/material/input';
 import {
   MsalBroadcastService,
   MsalGuard,
@@ -31,6 +33,7 @@ import {
   LogLevel,
   PublicClientApplication,
 } from '@azure/msal-browser';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
@@ -94,6 +97,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     RouterModule,
     AuthModule,
     MsalModule,
+    MatSidenavModule,
+    MatFormFieldModule,
   ],
   providers: [
     {

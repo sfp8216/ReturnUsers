@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
+import { AccountInfo } from '@azure/msal-browser';
 
 @Injectable({
   providedIn: 'root',
@@ -46,5 +47,8 @@ export class AuthService {
       return false;
     }
     return this.roles.indexOf('User') > -1;
+  }
+  returnUserInfo(): AccountInfo {
+    return this.msalService.instance.getActiveAccount();
   }
 }

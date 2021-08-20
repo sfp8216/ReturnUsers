@@ -21,6 +21,7 @@ import { DeleteDialogComponent } from './components/shared/delete-dialog/delete-
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UpdateDialogComponent } from './components/shared/update-dialog/update-dialog.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UpdateDialogComponent } from './components/shared/update-dialog/update-
     HomeComponent,
     DeleteDialogComponent,
     UpdateDialogComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
