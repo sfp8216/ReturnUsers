@@ -20,9 +20,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { UsersRoutingModule } from '../users/users-routing.module';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent],
+  declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent, ProfileComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,

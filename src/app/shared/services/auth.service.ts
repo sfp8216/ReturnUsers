@@ -17,7 +17,7 @@ export class AuthService {
     return this.msalService.instance.getAllAccounts().length > 0;
   }
   logout() {
-    return this.msalService.logoutPopup().subscribe((nugga) => {
+    return this.msalService.logoutRedirect().subscribe((response) => {
       this.roles = [''];
     });
   }
