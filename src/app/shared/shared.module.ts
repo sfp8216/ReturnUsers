@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -29,6 +29,8 @@ import { MatDividerModule } from '@angular/material/divider';
     FormsModule,
     MatInputModule,
     MatDividerModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [ColumnOneComponent, SidebarComponent],
 })

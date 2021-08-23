@@ -4,6 +4,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button
+    *ngIf="this.authService.isAdmin()"
     mat-button
     button
     mat-raised-button

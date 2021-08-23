@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   MsalBroadcastService,
   MsalGuardConfiguration,
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private msalService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) {}
 
   login() {
@@ -31,8 +33,13 @@ export class LoginComponent implements OnInit {
       .subscribe((response: AuthenticationResult) => {
         this.msalService.instance.setActiveAccount(response.account);
         this.authService.getRoles();
+        this.router.navigate(['/display']);
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/display']);
+    }
+  }
 }

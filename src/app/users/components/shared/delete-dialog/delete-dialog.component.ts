@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class DeleteDialogComponent implements OnInit {
     private http: HttpClient,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: { id: string },
-    public userService: UsersService
+    public userService: UsersService,
+    public authService: AuthService
   ) {}
   dialogRef = this.dialog;
 

@@ -71,7 +71,6 @@ export class UpdateDialogComponent implements OnInit {
     let user: User = JSON.parse(JSON.stringify(formObj));
     user.id = this.userId.id;
 
-    console.log(user);
     this.userService.updateUser(user).subscribe({
       next: (data) => {
         alert('User Updated successfully');

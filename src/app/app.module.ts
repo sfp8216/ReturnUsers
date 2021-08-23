@@ -34,6 +34,7 @@ import {
   PublicClientApplication,
 } from '@azure/msal-browser';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { UsersInfoModule } from './users-info/users-info.module';
 
 const isIE =
   window.navigator.userAgent.indexOf('MSIE ') > -1 ||
@@ -99,6 +100,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     MsalModule,
     MatSidenavModule,
     MatFormFieldModule,
+    UsersInfoModule,
   ],
   providers: [
     {

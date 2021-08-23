@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { AccountInfo } from '@azure/msal-browser';
 
@@ -8,7 +9,7 @@ import { AccountInfo } from '@azure/msal-browser';
 export class AuthService {
   claimsObject: any;
   roles: [string];
-  constructor(private msalService: MsalService) {}
+  constructor(private msalService: MsalService, private router: Router) {}
 
   login() {
     return this.msalService.loginPopup();
@@ -18,8 +19,9 @@ export class AuthService {
     return this.msalService.instance.getAllAccounts().length > 0;
   }
   logout() {
-    return this.msalService.logoutRedirect().subscribe((response) => {
+    return this.msalService.logoutPopup().subscribe((response) => {
       this.roles = [''];
+      this.router.navigate(['/login']);
     });
   }
   getRoles() {
